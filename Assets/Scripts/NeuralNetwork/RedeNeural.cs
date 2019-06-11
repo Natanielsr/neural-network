@@ -18,35 +18,53 @@ public class RedeNeural
         this.Hidden_Nodes = Hidden_Nodes;
         this.Output_Nodes = Output_Nodes;
 
-        this.bias_input_hidden = new Matrix(Hidden_Nodes, 1);
-        this.bias_hidden_output =  new Matrix(Output_Nodes, 1);
+        this.bias_input_hidden = new Matrix(Hidden_Nodes, 1); //recebe aleatorio Hidden_Nodesx1
+        this.bias_hidden_output =  new Matrix(Output_Nodes, 1); //recebe aleatorio  Output_Nodesx1
 
         
-        //this.bias_input_hidden.printMatrix();
-        //this.bias_hidden_output.printMatrix();
 
-        this.weigth_input_hidden = new Matrix(Hidden_Nodes, Input_Nodes);
+        this.weigth_input_hidden = new Matrix(Hidden_Nodes, Input_Nodes); //recebe aleatorio
 
-        this.weigth_hidden_output = new Matrix(Output_Nodes, Hidden_Nodes);
+        this.weigth_hidden_output = new Matrix(Output_Nodes, Hidden_Nodes); //recebe aleatorio
 
-        //this.weigth_hidden_output.printMatrix();
-        //this.weigth_input_hidden.printMatrix();
         
 
     }
 
     public void feedFoward(double[] inputArray){
-        var inputMatrix = Matrix.ArrayParaMatrix(inputArray);
+
+        if(inputArray.Length != Input_Nodes)
+            throw new Exception("Numero de inputs incorreto");
+        //INPUT
+        var inputMatrix = Matrix.ArrayParaMatrix(inputArray); //TRANSFORMA ARRAY EM MATRIX 
+
         inputMatrix.printMatrix();
-        this.weigth_input_hidden.printMatrix();
+        //this.weigth_input_hidden.printMatrix();
        
-        var hidden = Matrix.MultiplicaMatrizes(this.weigth_input_hidden, inputMatrix);
-        hidden.printMatrix();
-        bias_input_hidden.printMatrix();
-        hidden = Matrix.SomaMatrizes(hidden, this.bias_input_hidden);
-        hidden.printMatrix();
-        hidden.SigmoidMatrix();
-        hidden.printMatrix();
+       //HIDDEN
+        var hidden = Matrix.MultiplicaMatrizes
+            (this.weigth_input_hidden, inputMatrix);//multiplica e soma os valores do input pelos pesos
+
+       // hidden.printMatrix();
+       // bias_input_hidden.printMatrix();
+
+        hidden = Matrix.SomaMatrizes(hidden, this.bias_input_hidden); //adiciona o bias
+
+        //hidden.printMatrix();
+
+        hidden.SigmoidMatrix(); //transforma o valor entre 0 - 1 com sigmoid
+
+        //hidden.printMatrix();
+
+        //OUTPUT
+        
+        //repete o processo
+        var outputMatrix = Matrix.MultiplicaMatrizes(this.weigth_hidden_output, hidden);
+        outputMatrix = Matrix.SomaMatrizes(outputMatrix, this.bias_hidden_output);
+        outputMatrix.SigmoidMatrix();
+
+        outputMatrix.printMatrix();
+
     }
 
     
