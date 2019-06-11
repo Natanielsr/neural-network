@@ -29,6 +29,26 @@ public class Matrix
 
     }
 
+    public void SigmoidMatrix(){
+        var matrix = this;
+
+        for (int i = 0; i < matrix.data.Length; i++)
+        {
+            var arr = matrix.data[i];
+            for(int j = 0; j < arr.Length; j++)
+            {
+                var primeiroValor = matrix.data[i][j];
+                matrix.data[i][j] = sigmoid(primeiroValor);
+            }
+        }
+
+        //return matrix;
+    }
+
+    double sigmoid(double x){
+        return 1/(1+ Math.Exp(-x));
+    }
+
     public static Matrix ArrayParaMatrix(double[] array){
         var matrix = new Matrix(array.Length, 1);
 
@@ -109,10 +129,10 @@ public class Matrix
 
     public double RandomNumber()  
     {  
-        int min = 0, max = 100;
+        int min = -100, max = 100;
         var rand = UnityEngine.Random.Range(min, max);
-      //  var res = rand * 0.01; 
-        return rand;  
+        var res = rand * 0.01; 
+        return res;  
     } 
 
     

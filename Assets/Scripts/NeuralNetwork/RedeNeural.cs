@@ -1,15 +1,18 @@
+using System;
 public class RedeNeural
 {
     int Input_Nodes;
     int Hidden_Nodes;
     int Output_Nodes;
 
+    Matrix weigth_input_hidden;
     Matrix bias_input_hidden;
+    Matrix weigth_hidden_output;
     Matrix bias_hidden_output;
 
-    Matrix weigth_input_hidden;
+    
 
-    Matrix weigth_hidden_output;
+    
     public RedeNeural(int Input_Nodes, int Hidden_Nodes,int Output_Nodes){
         this.Input_Nodes = Input_Nodes;
         this.Hidden_Nodes = Hidden_Nodes;
@@ -42,5 +45,9 @@ public class RedeNeural
         bias_input_hidden.printMatrix();
         hidden = Matrix.SomaMatrizes(hidden, this.bias_input_hidden);
         hidden.printMatrix();
+        hidden.SigmoidMatrix();
+        hidden.printMatrix();
     }
+
+    
 }
