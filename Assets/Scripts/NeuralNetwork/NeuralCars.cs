@@ -7,36 +7,37 @@ public class NeuralCars : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Neuronio Sensor1 = new Neuronio();
-        var l1 = new Ligacao(-1);
-        var l2 = new Ligacao(-1);
+        Neuronio neuronio = new Neuronio();
+        var ligacao = new Ligacao();
+        float peso1 = 0, peso2 = 0, peso3 = 0, peso4 = 0, peso5 = 0, peso6 = 0; 
 
-        Neuronio Sensor2 = new Neuronio();
-        var l3 = new Ligacao(-1);
-        var l4 = new Ligacao(0);
+        //camada 1
+        var entrada1 = 1;//entrada
+        if(entrada1 > 0)
+        {
+            peso1 = ligacao.calcularPeso(entrada1, 1);
+            peso2 = ligacao.calcularPeso(entrada1, 1);
+        }
 
-        Neuronio Sensor3 = new Neuronio();
-        var l5 = new Ligacao(-1);
-        var l6 = new Ligacao(1);
+        var entrada2 = 1;
+        if(entrada2 > 0)
+        {
+            peso3 = ligacao.calcularPeso(entrada2, 1);
+            peso4 = ligacao.calcularPeso(entrada2, 1);
+        }
 
-        Neuronio aceleracao = new Neuronio();
-        Neuronio direcao = new Neuronio();
+        var entrada3 = 1;
+        if(entrada3 > 0)
+        {
+            peso5 = ligacao.calcularPeso(entrada3, 1);
+            peso6 = ligacao.calcularPeso(entrada3, 1);
+        }
+        //
 
-
-        Sensor1.ExecutarPrimeiraVez(1, new List<Ligacao>(){l1, l2});//entrada 
-        l1.ExecutarNormal(aceleracao);
-        l2.ExecutarNormal(direcao);
-
-        Sensor2.ExecutarPrimeiraVez(1, new List<Ligacao>(){l3, l4});//entrada
-        l3.ExecutarNormal(aceleracao);
-        l4.ExecutarNormal(direcao);
-
-        Sensor3.ExecutarPrimeiraVez(1, new List<Ligacao>(){l5, l6});//entrada
-        l5.ExecutarNormal(aceleracao);
-        l6.ExecutarNormal(direcao);
-
-        var resAceleracao = aceleracao.Executar(null);//saida
-        var resDirecao = direcao.Executar(null);//saida
+        //camada 2
+        var resAceleracao = neuronio.Executar(new List<float>(){peso1, peso3, peso5});//saida
+        var resDirecao = neuronio.Executar(new List<float>(){peso2, peso4 ,peso6});//saida
+        //
 
         UnityEngine.Debug.Log("Aceleracao: "+resAceleracao);
         UnityEngine.Debug.Log("resDirecao: "+resDirecao);

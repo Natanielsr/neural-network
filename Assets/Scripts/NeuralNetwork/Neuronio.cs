@@ -5,26 +5,20 @@ public class Neuronio
 {
   private List<float> valoresEntrada;
  
-  public bool funcaoAtivacao = true;
-  float somatorio;
-  List<Ligacao> LigacoesSaidas;
-
-  public Neuronio(){
-    this.valoresEntrada = new List<float>();
-    
-  }
 
   public void receberValor(float valor){
     this.valoresEntrada.Add(valor);
   }
 
 
-  public void Processar(){
+  public float Processar(){
+    float somatorio = 0;
     for (int i = 0; i < valoresEntrada.Count; i++)
     {
         var valorEntrada = valoresEntrada[i];
         somatorio += valorEntrada;
     }
+    return somatorio;
   }
 
   float funcaoAtivacaoLogistica(float u){
@@ -40,32 +34,12 @@ public class Neuronio
     return (float)resultado;
   }
 
-  public float EnviarValorASaida(){
-    if(LigacoesSaidas== null){
-      
-      return funcaoAtivacaoLogistica(somatorio);;
-    }
-    for (int i = 0; i < LigacoesSaidas.Count; i++)
-    {
-        var ligacaoSaida = LigacoesSaidas[i];
-        var valorConvertido = somatorio;
-        if(funcaoAtivacao)
-          valorConvertido = funcaoAtivacaoLogistica(somatorio);
-        ligacaoSaida.receberValor(valorConvertido);
-    }
-    return somatorio;
-  }
 
-   public float Executar(List<Ligacao> LigacoesSaidas){
-      this.LigacoesSaidas = LigacoesSaidas;
-      this.Processar();
-      return this.EnviarValorASaida();;
-    }
+   public float Executar(List<float> entradas){
+      this.valoresEntrada = entradas;
+      var somatorio = this.Processar();
+      return funcaoAtivacaoLogistica(somatorio);
+   }
 
-    public float ExecutarPrimeiraVez(float valor, List<Ligacao> LigacoesSaidas){
-      this.funcaoAtivacao = false;
-      this.receberValor(valor);
-      return Executar(LigacoesSaidas);
-    }
 
 }
