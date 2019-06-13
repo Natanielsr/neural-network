@@ -23,24 +23,21 @@ public class CarBehaviour : MonoBehaviour
     public float totalGas = 100;
     float currentGas;
 
+    public List<Gas> GasUnitList;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         CurrentState = CarState.WORKING;
         currentGas = totalGas;
+        GasUnitList = new List<Gas>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         if(this.CurrentState == CarState.WORKING){
-            //UnityEngine.Debug.Log("wORKING");
-            if(currentGas <= 0)
-            {
-                finishGas();
-              //  return;
-            }
 
             moveCar();
             consumeGas();
@@ -48,9 +45,13 @@ public class CarBehaviour : MonoBehaviour
     
     }
 
-
-
     void consumeGas(){
+        if(currentGas <= 0)
+        {
+            finishGas();
+            return;
+        }
+
         currentGas -= Time.deltaTime * 1;
     }
 
@@ -80,5 +81,14 @@ public class CarBehaviour : MonoBehaviour
 
     void finishGas(){
         this.CurrentState = CarState.NO_GAS;
+    }
+
+    public void AddFuel(Gas gas){
+        this.GasUnitList.Add(gas);
+        this.currentGas += gas.GasUnit;
+    }
+
+     public void RemoveEmptyGas(Gas gas){
+        this.GasUnitList.Remove(gas);
     }
 }

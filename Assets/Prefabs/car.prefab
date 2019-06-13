@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8974887496629484100}
   m_Layer: 0
   m_Name: car
-  m_TagString: Untagged
+  m_TagString: car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,8 +50,8 @@ MonoBehaviour:
   accelerationPower: 100
   inputVertical: 0
   inputHorizontal: 0
-  steeringPower: 50
-  totalGas: 60
+  steeringPower: 100
+  totalGas: 20
 --- !u!33 &8974887496629484103
 MeshFilter:
   m_ObjectHideFlags: 0
