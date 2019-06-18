@@ -25,6 +25,13 @@ public class CarBehaviour : MonoBehaviour
 
     public List<Gas> GasUnitList;
 
+    RaycastHit hit;
+    public float rayDistance = 10f;
+
+    public Transform[] rayTransforms;
+
+    Vector3[] colisionsPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +39,7 @@ public class CarBehaviour : MonoBehaviour
         CurrentState = CarState.WORKING;
         currentGas = totalGas;
         GasUnitList = new List<Gas>();
+        colisionsPoints = new Vector3[rayTransforms.Length];
     }
 
     // Update is called once per frame
@@ -40,6 +48,7 @@ public class CarBehaviour : MonoBehaviour
         if(this.CurrentState == CarState.WORKING){
 
             moveCar();
+            checkObstacles();
             consumeGas();
         }
     
@@ -88,7 +97,31 @@ public class CarBehaviour : MonoBehaviour
         this.currentGas += gas.GasUnit;
     }
 
-     public void RemoveEmptyGas(Gas gas){
+    public void RemoveEmptyGas(Gas gas){
         this.GasUnitList.Remove(gas);
     }
+
+    void checkObstacles(){
+       
+        for (int i = 0; i < rayTransforms.Length; i++)
+        {
+            createRay(i);
+        }
+        
+    }
+
+    void createRay(int i){
+
+        var rayTransform = rayTransforms[i];
+        Vector3 forward = rayTransform.TransformDirection(Vector3.forward) * rayDistance;
+        Ray ladingRay = new Ray(rayTransform.position, forward);
+        UnityEngine.Debug.DrawRay(rayTransform.position, forward, Color.green);
+
+        if(Physics.Raycast(ladingRay, out hit, rayDistance, 1 << 8)){
+
+           // UnityEngine.Debug.Log("Detector "+i+" Ativou");
+            UnityEngine.Debug.DrawRay(hit.point, forward, Color.red);
+        }
+    }
+
 }
