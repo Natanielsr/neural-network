@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1366907147445173195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4179541853296802919}
+  m_Layer: 0
+  m_Name: middleBottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4179541853296802919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366907147445173195}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8974887496629484102}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1932883249896071155
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7703358220658494768}
   m_Layer: 0
-  m_Name: ray2
+  m_Name: MiddleTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,6 +60,36 @@ Transform:
   m_Father: {fileID: 8974887496629484102}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3665724312143775332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3625838719134650931}
+  m_Layer: 0
+  m_Name: rightBottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3625838719134650931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3665724312143775332}
+  m_LocalRotation: {x: 0, y: 0.9063079, z: 0, w: 0.42261827}
+  m_LocalPosition: {x: 0.5, y: 0, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8974887496629484102}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 130, z: 0}
 --- !u!1 &4785142488996156932
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7212179779966310451}
   m_Layer: 0
-  m_Name: ray3
+  m_Name: rightTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8950651325685452334}
   m_Layer: 0
-  m_Name: ray1
+  m_Name: leftTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,6 +150,36 @@ Transform:
   m_Father: {fileID: 8974887496629484102}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+--- !u!1 &8228451426436666622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3679358537057058297}
+  m_Layer: 0
+  m_Name: leftBottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3679358537057058297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8228451426436666622}
+  m_LocalRotation: {x: 0, y: -0.9063079, z: 0, w: 0.42261827}
+  m_LocalPosition: {x: -0.5, y: 0, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8974887496629484102}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -130, z: 0}
 --- !u!1 &8974887496629484122
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +194,7 @@ GameObject:
   - component: {fileID: 8974887496629484120}
   - component: {fileID: 8974887496629484121}
   - component: {fileID: 8974887496629484100}
+  - component: {fileID: 791399417}
   m_Layer: 0
   m_Name: car
   m_TagString: car
@@ -125,6 +216,9 @@ Transform:
   - {fileID: 8950651325685452334}
   - {fileID: 7703358220658494768}
   - {fileID: 7212179779966310451}
+  - {fileID: 3679358537057058297}
+  - {fileID: 4179541853296802919}
+  - {fileID: 3625838719134650931}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -144,12 +238,16 @@ MonoBehaviour:
   inputVertical: 0
   inputHorizontal: 0
   steeringPower: 100
-  totalGas: 20
-  rayDistance: 10
+  totalGas: 60
+  rayDistance: 30
   rayTransforms:
   - {fileID: 8950651325685452334}
   - {fileID: 7703358220658494768}
   - {fileID: 7212179779966310451}
+  - {fileID: 3679358537057058297}
+  - {fileID: 4179541853296802919}
+  - {fileID: 3625838719134650931}
+  distanceSensors: []
 --- !u!33 &8974887496629484103
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -224,3 +322,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &791399417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8974887496629484122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b019c66d2637e4d49b3bcecff56aa5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sensors: []

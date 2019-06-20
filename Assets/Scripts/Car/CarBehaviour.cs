@@ -30,7 +30,7 @@ public class CarBehaviour : MonoBehaviour
 
     public Transform[] rayTransforms;
 
-    Vector3[] colisionsPoints;
+    public float[] distanceSensors;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +39,7 @@ public class CarBehaviour : MonoBehaviour
         CurrentState = CarState.WORKING;
         currentGas = totalGas;
         GasUnitList = new List<Gas>();
-        colisionsPoints = new Vector3[rayTransforms.Length];
+        distanceSensors = new float[rayTransforms.Length];
     }
 
     // Update is called once per frame
@@ -121,7 +121,12 @@ public class CarBehaviour : MonoBehaviour
 
            // UnityEngine.Debug.Log("Detector "+i+" Ativou");
             UnityEngine.Debug.DrawRay(hit.point, forward, Color.red);
+            float dist = Vector3.Distance(hit.point, rayTransform.position);
+            distanceSensors[i] = dist;
+
         }
+        else
+           distanceSensors[i] = rayDistance; 
     }
 
 }

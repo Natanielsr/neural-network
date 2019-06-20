@@ -46,7 +46,7 @@ public class Matrix
     }
 
     double sigmoid(double x){
-        return 1/(1+ Math.Exp(-x));
+        return 2/(1+ Math.Exp(-(2*x)))-1;
     }
 
     public static Matrix ArrayParaMatrix(double[] array){

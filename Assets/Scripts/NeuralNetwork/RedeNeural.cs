@@ -31,14 +31,14 @@ public class RedeNeural
 
     }
 
-    public void feedFoward(double[] inputArray){
+    public Matrix feedFoward(double[] inputArray){
 
         if(inputArray.Length != Input_Nodes)
             throw new Exception("Numero de inputs incorreto");
         //INPUT
         var inputMatrix = Matrix.ArrayParaMatrix(inputArray); //TRANSFORMA ARRAY EM MATRIX 
 
-        inputMatrix.printMatrix();
+        //inputMatrix.printMatrix();
         //this.weigth_input_hidden.printMatrix();
        
        //HIDDEN
@@ -64,6 +64,8 @@ public class RedeNeural
         outputMatrix.SigmoidMatrix();
 
         outputMatrix.printMatrix();
+
+        return outputMatrix;
 
     }
 
