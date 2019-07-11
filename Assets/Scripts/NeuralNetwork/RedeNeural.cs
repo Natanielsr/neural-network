@@ -63,7 +63,7 @@ public class RedeNeural
         outputMatrix = Matrix.SomaMatrizes(outputMatrix, this.bias_hidden_output);
         outputMatrix.SigmoidMatrix();
 
-        outputMatrix.printMatrix();
+        //outputMatrix.printMatrix();
 
         return outputMatrix;
 

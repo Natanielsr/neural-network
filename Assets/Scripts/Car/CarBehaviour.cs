@@ -76,11 +76,14 @@ public class CarBehaviour : MonoBehaviour
         rb.AddRelativeForce(Vector3.forward * speed );
     }
 
-    void OnCollisionEnter (Collision col)
+    void OnTriggerEnter (Collider col)
     {
+        UnityEngine.Debug.Log("O carro bateu na parde");
         if(col.gameObject.tag == "obstacle")
         {
+            rb.velocity = Vector3.zero;
             brokeCar();
+            
         }
     }
 
