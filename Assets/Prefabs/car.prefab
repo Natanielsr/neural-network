@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 8974887496629484121}
   - component: {fileID: 8974887496629484100}
   - component: {fileID: 791399417}
+  - component: {fileID: 6067762921079888664}
   m_Layer: 0
   m_Name: car
   m_TagString: car
@@ -367,6 +368,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sensors: []
+--- !u!114 &6067762921079888664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8974887496629484122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed015870a10f30b41bcef2daba3091eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7150970375934871275
 PrefabInstance:
   m_ObjectHideFlags: 0

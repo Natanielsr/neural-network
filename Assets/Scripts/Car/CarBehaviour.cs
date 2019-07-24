@@ -13,17 +13,16 @@ public class CarBehaviour : MonoBehaviour
     Rigidbody rb;
     float speed;
 
-    CarState CurrentState;
+    public CarState CurrentState;
     public float accelerationPower = 100f;
 
     public float inputVertical = 0; 
     public float inputHorizontal = 0;
     public float steeringPower = 50f;
 
-    public float totalGas = 100;
-    float currentGas;
+    CarStatus status;
 
-    public List<Gas> GasUnitList;
+    
 
     RaycastHit hit;
     public float rayDistance = 10f;
@@ -35,11 +34,14 @@ public class CarBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        status = GetComponent<CarStatus>();
+        status.EncheOTanqueMeuConsagrado();
         rb = GetComponent<Rigidbody>();
-        CurrentState = CarState.WORKING;
-        currentGas = totalGas;
-        GasUnitList = new List<Gas>();
+       
+        
         distanceSensors = new float[rayTransforms.Length];
+        CurrentState = CarState.WORKING;
     }
 
     // Update is called once per frame
@@ -49,20 +51,14 @@ public class CarBehaviour : MonoBehaviour
 
             moveCar();
             checkObstacles();
-            consumeGas();
+            var gas = status.consumeGas();
+            if(gas <= 0)
+                finishGas();
         }
     
     }
 
-    void consumeGas(){
-        if(currentGas <= 0)
-        {
-            finishGas();
-            return;
-        }
-
-        currentGas -= Time.deltaTime * 1;
-    }
+    
 
     void moveCar(){
         speed = inputVertical * accelerationPower;
@@ -78,7 +74,7 @@ public class CarBehaviour : MonoBehaviour
 
     void OnTriggerEnter (Collider col)
     {
-        UnityEngine.Debug.Log("O carro bateu na parde");
+        //UnityEngine.Debug.Log("O carro bateu na parde");
         if(col.gameObject.tag == "obstacle")
         {
             rb.velocity = Vector3.zero;
@@ -95,14 +91,6 @@ public class CarBehaviour : MonoBehaviour
         this.CurrentState = CarState.NO_GAS;
     }
 
-    public void AddFuel(Gas gas){
-        this.GasUnitList.Add(gas);
-        this.currentGas += gas.GasUnit;
-    }
-
-    public void RemoveEmptyGas(Gas gas){
-        this.GasUnitList.Remove(gas);
-    }
 
     void checkObstacles(){
        

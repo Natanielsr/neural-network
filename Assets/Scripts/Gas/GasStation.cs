@@ -24,7 +24,7 @@ public class GasStation : MonoBehaviour
     {
         if(col.gameObject.tag == "car")
         {
-            CarBehaviour carro = col.gameObject.GetComponent<CarBehaviour>();
+            CarStatus carro = col.gameObject.GetComponent<CarStatus>();
 
             var gas = JaExisteGasolina(carro.GasUnitList);
             if(gas == null)
