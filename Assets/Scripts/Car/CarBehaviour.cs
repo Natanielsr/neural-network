@@ -31,6 +31,8 @@ public class CarBehaviour : MonoBehaviour
 
     public float[] distanceSensors;
 
+    GasStationController gasStationController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +40,9 @@ public class CarBehaviour : MonoBehaviour
         status = GetComponent<CarStatus>();
         status.EncheOTanqueMeuConsagrado();
         rb = GetComponent<Rigidbody>();
+
+        gasStationController = FindObjectOfType<GasStationController>();
        
-        
         distanceSensors = new float[rayTransforms.Length];
         CurrentState = CarState.WORKING;
     }
@@ -51,6 +54,8 @@ public class CarBehaviour : MonoBehaviour
 
             moveCar();
             checkObstacles();
+            status.distanceToNextGasStation = checkDistanceToGasStation();
+
             var gas = status.consumeGas();
             if(gas <= 0)
                 finishGas();
@@ -119,5 +124,22 @@ public class CarBehaviour : MonoBehaviour
         else
            distanceSensors[i] = rayDistance; 
     }
+
+    float checkDistanceToGasStation(){
+        var minorDistance = 10000.0f;
+        foreach (var gasStation in gasStationController.gasStations)
+        {
+            var gasList  = status.GasUnitList; //lista de gasolinas que forem adicionadas
+            if(gasStation.JaAbasteceu(gasList) == null){ //nao abasteceu no posto ipiranga
+                var distanceToNextStation = Vector3.Distance(
+                    gasStation.transform.position, transform.position);
+
+                if(distanceToNextStation < minorDistance)
+                    minorDistance = distanceToNextStation;
+            }
+        }
+
+        return minorDistance;
+    } 
 
 }

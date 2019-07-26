@@ -26,7 +26,7 @@ public class GasStation : MonoBehaviour
         {
             CarStatus carro = col.gameObject.GetComponent<CarStatus>();
 
-            var gas = JaExisteGasolina(carro.GasUnitList);
+            var gas = JaAbasteceu(carro.GasUnitList);
             if(gas == null)
             {
                 carro.AddFuel(new Gas(GasStationId, 10));
@@ -41,7 +41,7 @@ public class GasStation : MonoBehaviour
 
     }
 
-    Gas JaExisteGasolina(List<Gas> gasCar){
+    public Gas JaAbasteceu(List<Gas> gasCar){
 
         for (int i = 0; i < gasCar.Count; i++)
         {

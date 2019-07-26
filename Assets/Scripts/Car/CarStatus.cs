@@ -5,14 +5,16 @@ using UnityEngine;
 public class CarStatus : MonoBehaviour
 {
     public int carGasStationCatchs = 0;
-    public List<Gas> GasUnitList;
+    public float distanceToNextGasStation = 0;
+    public int idCar;
+    public List<Gas> GasUnitList = new List<Gas>();
 
     public float totalGas = 100;
     private float currentGas;
 
     void Start()
     {
-       
+        
         GasUnitList = new List<Gas>();
     }
 
@@ -34,7 +36,7 @@ public class CarStatus : MonoBehaviour
     public float consumeGas(){
         
         currentGas = currentGas - Time.deltaTime * 1;
-        UnityEngine.Debug.Log(currentGas+"carStatus");
+       // 
         return currentGas;
     }
     

@@ -13,6 +13,9 @@ public class CarSpawner : MonoBehaviour
         for (int i = 0; i < carCount; i++)
         {
             var car = Instantiate(carPrefab, transform.position, transform.rotation);
+            var carStatus = car.GetComponent<CarStatus>();
+            carStatus.idCar = cars.Count;
+
             cars.Add(car);
 
         }
