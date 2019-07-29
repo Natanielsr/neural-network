@@ -3,17 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CarState{
-    WORKING = 0,
-    BROKING = 1,
-    NO_GAS = 2
-}
+
 public class CarBehaviour : MonoBehaviour
 {
     Rigidbody rb;
     float speed;
-
-    public CarState CurrentState;
+    
     public float accelerationPower = 100f;
 
     public float inputVertical = 0; 
@@ -21,8 +16,6 @@ public class CarBehaviour : MonoBehaviour
     public float steeringPower = 50f;
 
     CarStatus status;
-
-    
 
     RaycastHit hit;
     public float rayDistance = 10f;
@@ -33,10 +26,12 @@ public class CarBehaviour : MonoBehaviour
 
     GasStationController gasStationController;
 
+    GameController gameController;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameController = FindObjectOfType<GameController>();
         status = GetComponent<CarStatus>();
         status.EncheOTanqueMeuConsagrado();
         rb = GetComponent<Rigidbody>();
@@ -44,13 +39,13 @@ public class CarBehaviour : MonoBehaviour
         gasStationController = FindObjectOfType<GasStationController>();
        
         distanceSensors = new float[rayTransforms.Length];
-        CurrentState = CarState.WORKING;
+        status.CurrentState = CarState.WORKING;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(this.CurrentState == CarState.WORKING){
+        if(status.CurrentState == CarState.WORKING){
 
             moveCar();
             checkObstacles();
@@ -80,20 +75,25 @@ public class CarBehaviour : MonoBehaviour
     void OnTriggerEnter (Collider col)
     {
         //UnityEngine.Debug.Log("O carro bateu na parde");
-        if(col.gameObject.tag == "obstacle")
+        if(col.gameObject.tag == "obstacle" 
+            &&  status.CurrentState == CarState.WORKING)
         {
-            rb.velocity = Vector3.zero;
             brokeCar();
+            rb.velocity = Vector3.zero;
+            
             
         }
     }
 
     void brokeCar(){
-        this.CurrentState = CarState.BROKING;
+        status.CurrentState = CarState.BROKING;
+        gameController.verifyCars(this.gameObject);
     }
 
     void finishGas(){
-        this.CurrentState = CarState.NO_GAS;
+        
+        status.CurrentState = CarState.NO_GAS;
+        gameController.verifyCars(this.gameObject);
     }
 
 

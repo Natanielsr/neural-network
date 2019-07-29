@@ -271,7 +271,6 @@ MonoBehaviour:
   inputVertical: 0
   inputHorizontal: 0
   steeringPower: 100
-  totalGas: 60
   rayDistance: 60
   rayTransforms:
   - {fileID: 8950651325685452334}
@@ -380,6 +379,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed015870a10f30b41bcef2daba3091eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carGasStationCatchs: 0
+  distanceToNextGasStation: 0
+  idCar: 0
+  CurrentState: 0
+  totalGas: 60
 --- !u!1001 &7150970375934871275
 PrefabInstance:
   m_ObjectHideFlags: 0

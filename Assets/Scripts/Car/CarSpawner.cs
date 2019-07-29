@@ -8,8 +8,8 @@ public class CarSpawner : MonoBehaviour
     public int carCount = 10;
     public List<GameObject> cars = new List<GameObject>();
     // Start is called before the first frame update
-    void Start()
-    {
+    
+    public void StartCarSpawner(){
         for (int i = 0; i < carCount; i++)
         {
             var car = Instantiate(carPrefab, transform.position, transform.rotation);
@@ -19,12 +19,6 @@ public class CarSpawner : MonoBehaviour
             cars.Add(car);
 
         }
-        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
